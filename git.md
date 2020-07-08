@@ -45,6 +45,8 @@ Initialized empty Git repository in C:/Users/jynee/Desktop/TIL/.git/
 
 > 커밋 대상 파일들을 추가한다.
 
+
+
 add 전 상황
 
 ``` bash
@@ -65,6 +67,80 @@ Untracked files:
         markdown.md
 
 nothing added to commit but untracked files present (use "git add" to track)
+
+```
+
+
+
+``` bash
+$ git add .
+$ git status
+On branch master
+
+No commits yet
+# 커밋될 변경사항들 
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+        new file:   git.md
+        new file:   "markdown-images/\354\235\264\353\257\270\354\247\200 027.png"
+        new file:   markdown.md
+
+```
+
+
+
+* add 명령어는 아래와 같이 활용된다.
+
+  ``` bash
+  $ git add . # 현재 디렉토리 전부
+  $ git add git.md # 특정 파일
+  $ git add markdown-images/ # 특정 디렉토리
+  ```
+
+
+
+### 1.3. `commit`
+
+> 이력을 확정 짓는 명령어
+
+
+
+```bash
+$ git commit -m '커밋 메시지' #$ git commit -m 'Init'
+[master (root-commit) 4f243d5] Init
+ 3 files changed, 177 insertions(+)
+ create mode 100644 git.md
+ create mode 100644 "markdown-images/\354\235\264\353\257\270\354\247\200 027.png"
+ create mode 100644 markdown.md
+```
+
+
+
+#### `log` 명령어
+
+> 커밋 내역들을 확인할 수 있는 명령어
+
+```bash
+$ git log
+commit 4f243d5f4ad16abb6a5a3b713e840229c7122c02 (HEAD -> master)
+Author: jynee <y.jynee@gmail.com>
+Date:   Wed Jul 8 14:41:26 2020 +0900
+
+    Init
+
+# 최근 n개 이력(1개)
+$ git log -1
+commit 4f243d5f4ad16abb6a5a3b713e840229c7122c02 (HEAD -> master)
+Author: jynee <y.jynee@gmail.com>
+Date:   Wed Jul 8 14:41:26 2020 +0900
+
+# 간략한 표현
+$ git log --oneline
+4f243d5 (HEAD -> master) Init
+
+# 최근 n개 이력을 간략하게
+$ git log --oneline -1
+4f243d5 (HEAD -> master) Init
 
 ```
 
