@@ -50,8 +50,9 @@
   * (output) alic를 넣었을 때 hurt의 위치(index)를 찾도록 함
 
 * 예측 시, 더 편리한 건 Skip-Gram.
-  * 단어 하나만 넣으면 output이 나오므로
-
+  
+* 단어 하나만 넣으면 output이 나오므로
+  
 * *단점* >
 
   1. **동음이의어를 제대로 파악하지 못한다.**
@@ -78,7 +79,31 @@
 
 
 
+
+
+
+
+
+
+### SGNS 핵심 용어
+
+* 
+
+
+
+
+
+
+
+
+
+
+
+
+
 * ### CODE
+  * SGNS + CNN
+
   * 소설 alice in wonderland에 사용된 단어들을 2차원 feature로 vector화 한다.
 
   * #### 그림으로 먼저 보기:
@@ -92,10 +117,10 @@
   * ![image-20200729173218124](markdown-images/image-20200729173218124.png)
 
   * ![image-20200729173227834](markdown-images/image-20200729173227834.png)
-
+  
     > * x값인 7을 input 했을 때 output이 y값으로 8이 나올 때의 네트워크다.
     >
-    > * 2개 뉴런으로 줄였을 때의 latent layer를 전체 학습 후 따로 빼내고,
+  > * 2개 뉴런으로 줄였을 때의 latent layer를 전체 학습 후 따로 빼내고,
     > * 이때 나온 x좌표와 y좌표로 2D상의 plt에 그림으로 나타내면, 맥락 상 가까운 의미를 가진 단어들끼리 뭉쳐져 있음을 확인할 수 있다.
 
   * ![image-20200729173233038](markdown-images/image-20200729173233038.png)
@@ -107,7 +132,7 @@
   * #### code로 확인하기
 
   * 패키지 불러오기
-
+  
     ```python
     from sklearn.model_selection import train_test_split
     from sklearn.preprocessing import OneHotEncoder
@@ -122,13 +147,13 @@
     from nltk.stem import PorterStemmer
     import collections
     from tensorflow.keras.layers import Input, Dense, Dropout
-    from tensorflow.keras.models import Model
+  from tensorflow.keras.models import Model
     ```
 
   
 
   * 전처리
-
+  
     ```python
     def preprocessing(text): # 한 line(sentence)가 입력됨 
         
@@ -183,11 +208,11 @@
     
     	pre_proc_text =  " ".join([prat_lemmatize(token,tag) for token,tag in tagged_corpus])             
     
-    	return pre_proc_text
+  	return pre_proc_text
     ```
 
   * 소설 alice in wonderland를 읽어온다.
-
+  
     ```python
     lines = []
     fin = open("./dataset/alice_in_wonderland.txt", "r")
@@ -195,30 +220,30 @@
         if len(line) == 0: 
             continue # 소설 txt내 엔터 없애기
         lines.append(preprocessing(line))
-    fin.close()
+  fin.close()
     ```
 
   * 단어들이 사용된 횟수를 카운트 한다.
-
+  
     ```python
     counter = collections.Counter()
     
     for line in lines:
         for word in nltk.word_tokenize(line):
-            counter[word.lower()] += 1
+          counter[word.lower()] += 1
     ```
 
   * 사전을 구축한다.
 
     * 가장 많이 사용된 단어를 1번으로 시작해서 번호를 부여한다.
-
+  
     ```python
     word2idx = {w:(i+1) for i,(w,_) in enumerate(counter.most_common())} # ex: [(apple:50), (cat: 43), ...]
-    idx2word = {v:k for k,v in word2idx.items()} # ex: [(50: apple), (43: cat), ...]
+  idx2word = {v:k for k,v in word2idx.items()} # ex: [(50: apple), (43: cat), ...]
     ```
 
   * Trigram으로 학습 데이터를 생성한다.
-
+  
     ```python
     xs = []     # 입력 데이터
     ys = []     # 출력 데이터
@@ -245,27 +270,27 @@
         xs.extend(w_centers)
         ys.extend(w_lefts)
         xs.extend(w_centers)
-        ys.extend(w_rights)
+      ys.extend(w_rights)
     ```
 
   * 학습 데이터를 one-hot 형태로 바꾸고, 학습용과 시험용으로 분리한다.
-
+  
     ```python
     vocab_size = len(word2idx) + 1  # 사전의 크기 # vocab_size = 1787 # + 1 해줘야 밑에 ohe 할 때, vocab 끝까지 전부를 ohe 할 수 있음 
     
     ohe = OneHotEncoder(categories = [range(vocab_size)]) # ohe = OneHotEncoder(categories=[range(0, 1787)])
     X = ohe.fit_transform(np.array(xs).reshape(-1, 1)).todense() # .todense = .toarray()와 동일함: 결과를 배열 형태로 변환 
     Y = ohe.fit_transform(np.array(ys).reshape(-1, 1)).todense()
-    ## X.shape = (13868, 1787) / y.shape = (13868, 1787)
+  ## X.shape = (13868, 1787) / y.shape = (13868, 1787)
     ```
 
   * 학습용/시험용 data로 분리 
-
+  
     ```python
     Xtrain, Xtest, Ytrain, Ytest, xstr, xsts = train_test_split(X, Y, xs, test_size=0.2) 
-    # xs를 또 쓴 이유? => 뒤에서 가까운 단어끼리 그림(plt) 그릴 때 쓰려고
+  # xs를 또 쓴 이유? => 뒤에서 가까운 단어끼리 그림(plt) 그릴 때 쓰려고
     ```
-
+  
     > shape 참고 > 
     >
     > np.array(xs).shape
@@ -286,11 +311,11 @@
     > np.array(Ytrain).shape
     > Out[24]: (11094, 1787)
     >
-    > np.array(Ytest).shape
+  > np.array(Ytest).shape
     > Out[25]: (2774, 1787)
 
   * 딥러닝 모델을 생성한다. 
-
+  
     ```python
     BATCH_SIZE = 128
     NUM_EPOCHS = 20
@@ -306,20 +331,20 @@
                         # activation='softmax': one-hot이 출력되기 때문에 softmax여야 함 
     model = Model(input_layer, fourth_layer)
     model.compile(optimizer = "rmsprop", loss="categorical_crossentropy") 
-    # loss="categorical_crossentropy": 만약 one-hot이 아니라, 숫자(vocab의 index)가 출력된다면 loss="sparse_categorical_crossentropy"
+  # loss="categorical_crossentropy": 만약 one-hot이 아니라, 숫자(vocab의 index)가 출력된다면 loss="sparse_categorical_crossentropy"
     ```
 
   * 학습
-
+  
     ```python
     hist = model.fit(Xtrain, Ytrain, 
                      batch_size=BATCH_SIZE,
                      epochs=NUM_EPOCHS,
-                     validation_data = (Xtest, Ytest))
+                   validation_data = (Xtest, Ytest))
     ```
 
   * Loss history를 그린다
-
+  
     ```python
     plt.plot(hist.history['loss'], label='Train loss')
     plt.plot(hist.history['val_loss'], label = 'Test loss')
@@ -327,7 +352,7 @@
     plt.title("Loss history")
     plt.xlabel("epoch")
     plt.ylabel("loss")
-    plt.show()
+  plt.show()
     ```
 
     > ![image-20200729170655602](markdown-images/image-20200729170655602.png)
@@ -339,7 +364,7 @@
   * ### 단어들끼리의 거리를 그림으로 나타내는 code
 
   * Word2Vec 수치 확인
-
+  
     ```python
     # Extracting Encoder section of the Model for prediction of latent variables
     # 학습이 완료된 후 중간(hidden layer)의 결과 확인: = Word2Vec layer확인. (word2vec: word를 vec(수치)로 표현. 근까 저번 쉅에서 w의 값을 .get_weight()해서 확인했을 때의 값이 나올 듯)
@@ -359,9 +384,9 @@
     rows = final_pdframe.sample(n = 100)
     labels = list(rows["word"])
     xvals = list(rows["xaxis"])
-    yvals = list(rows["yaxis"])
+  yvals = list(rows["yaxis"])
     ```
-
+  
     > [final_pdframe] > 
     > Out[26]: 
     >          xaxis     yaxis  word_indx    word
@@ -376,13 +401,13 @@
     > 2771  0.196061  0.299570         83    good
     > 2772  0.000000  0.024289       1516  deserv
     > 2773  0.470771  0.550808        497    plan
-    >
+  >
     > [2774 rows x 4 columns]
 
   * 샘플링된 100개 단어를 2차원 공간상에 배치
 
     * 거리가 가까운 단어들은 서로 관련이 높은 것
-
+  
     ```python
     plt.figure(figsize=(15, 15))  
     
@@ -394,9 +419,9 @@
                      ha='right', va='bottom', fontsize=15)
     plt.xlabel("Dimension 1")
     plt.ylabel("Dimension 2")
-    plt.show()
+  plt.show()
     ```
-
+  
     > ![image-20200729170642147](markdown-images/image-20200729170642147.png)
 
 
@@ -444,10 +469,55 @@
   | ------------------------------------------------------------ | ------------------------------------------------------------ |
   | input 1개<br />input: input data<br /><br />output: target data | input 2개<br />input[1] : input data<br />input[2] : target data<br />output: label |
   | label 無                                                     | label 有: 1 or 0으로 이루어져 있음(이진분류)<br />n-gram으로 선택한 단어 쌍에는 label = 1 <br />랜덤하게 선택한 단어 쌍에는 label = 0 |
-  | 출력층: softmax 사용하여 0~1사이의 값                        | 출력층: sigmoid 사용하여 이진분류                            |
+  | 출력층: **softmax** 사용하여 0~1사이의 값                    | 출력층: **sigmoid** 사용하여 이진분류                        |
   | 거리 연산(cosine 등)을 하지 않는다. <br />latent layer에서 벡터 연산을 통해 나온 x,y 좌표로 그림을 그리던가 해서 <br />맥락 상 비슷한 의미를 가진 단어들을 찾아낼 수 있다. | 거리 연산을 할 수 있다. <br />두 개의 input 값에서 나온 vector 값을 하나로 합칠 때 dot 함수를 쓰면 거리 연산을 하는 것과 같다. 이때 cosine 거리 함수를 쓸 수도 있다. <br />그런데, concate 이나 add 함수를 쓰면 거리 계산을 못한다. |
 
   ![image-20200729151904052](markdown-images/image-20200729151904052.png)
+
+
+
+
+
+
+
+### SGNS의 Embedding 활용
+
+
+
+* 1. raw data 전처리
+
+  2. SGNS 모델 빌드(embedding, dot, reshape, sigmoid, binary_crossentropy)
+
+  3. SGNS 모델 학습
+
+  4. SGNS의 Embedding 모델 만들고, 그 모델의 가중치(w)만 따로 빼서 저장함
+
+     * 여기까지가 범용 목적의 SGNS의 Embedding을 만든 절차.
+     * 아래부턴 불특정 word data에 SGNS로 학습한 Embedding 기법을 적용해보는 것임
+
+  5. raw data로 train/test data split
+
+  6. CNN 모델 빌드(complie 까지)
+
+  7. CNN 모델 학습 **전**에 SGNS의 Embedding의 가중치(w) load(불러오기)
+
+  8. CNN 모델 fit 할 때, SKNS에서 학습한 W를 적용: `model.layers[1].set_weights(We)`
+
+  9. plt 그리거나 성능 확인
+
+     * 성능 확인: 
+
+       ```python
+       y_pred = model.predict(x_test)
+       y_pred = np.where(y_pred > 0.5, 1, 0)
+       print ("Test accuracy:", accuracy_score(y_test, y_pred))
+       ```
+
+       
+
+
+
+
 
 
 

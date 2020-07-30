@@ -4,6 +4,10 @@
 
 
 
+-------------------
+
+
+
 
 
 # Dense
@@ -144,6 +148,8 @@
 
 
 
+------------------
+
 
 
 
@@ -156,12 +162,12 @@
 
 ## optimizer
 
-* |      |                            |
-  | ---- | -------------------------- |
-  |      | `adam`                     |
-  |      | Adadelta, RMSprop, Adagrad |
-  |      | `momentum`                 |
-  |      | GD, NAG                    |
+* | 종류(빈도순)               |
+  | -------------------------- |
+  | `adam`                     |
+  | Adadelta, RMSprop, Adagrad |
+  | `momentum`                 |
+  | GD, NAG                    |
 
 * 최적화가 잘 안 되면 글로벌 minmun을 찾지 못하고 로컬 minimum에 빠진다. 이때 로컬 minimum을 **어떻게 빨리** 탈출할 수 있을지 U턴 메소드를 쓸지, 다른 1차 미분방법(GD)를 쓸 지 결정하게 된다. 
 
@@ -196,6 +202,88 @@
 
 
 
+-----------------------
+
+
+
+
+
+
+
+
+
+# NLP & DL
+
+
+
+* SGNS
+
+| 용어        | 설명                      | CODE                                | 참고                             |
+| ----------- | ------------------------- | ----------------------------------- | -------------------------------- |
+| pre-trained | SKNS에서 학습한 We를 적용 | model.layers[1]**.set_weights**(We) | 해당 code 적용 후 model fit 진행 |
+|             |                           |                                     |                                  |
+|             |                           |                                     |                                  |
+
+
+
+* SGNS에 모델 학습(fit) 시, 학습을 따로 시키는 이유?
+
+  ```python
+  # 학습
+  hist = model.fit([X[:, 0], X[:, 1]], X[:, 2], 
+                   batch_size=BATCH_SIZE,
+                   epochs=NUM_EPOCHS)
+  ```
+
+  > *  각기 연결된 가중치 선이 구분되어 있기 때문에
+
+
+
+* SGNS 모델 만들 때 dot을 한다면, 
+
+  1. **axis=2**    *@2*
+
+     → 후에
+
+  2. reshape**(())**    *@괄호 두 개*
+
+
+
+* SGNS로 만든 Embedding의 w(가중치)를 basic한 word data에 적용할 때, load_weights 사용하는 방법도 있다.
+
+  * 근데 이땐 shape을 맞춰줘야 한다.
+
+  ```python
+  w = encoder.load_weights('model_w.h5') # 가중치(w) 불러온 후,
+  emb = Embedding(max_features, embedding_dims, load_weights = w)(xInput) # embedding layer에 바로 적용
+  ```
+
+  * 보통 이런 느낌으로 씀
+
+    ```python
+    weights = load_weights()
+    embedding_layer = Embedding(input_dim=V,
+                                output_dim=embedding_dim,
+                                input_length=input_length,
+                                trainable=False,
+                                weights=weights,
+                                name='embedding')
+    ```
+
+    
+
+
+
+
+
+
+
+----------------------
+
+
+
+
+
 
 
 
@@ -211,4 +299,17 @@
   ```python
   euclidean_distances([father, mother])
   ```
+
+
+
+## 가중치 저장(Save)
+
+* Embedding (left side) layer의 W를 저장할 때, [2]를 저장한단 사실 알아두기
+
+  ```python
+  with open('data/embedding_W.pickle', 'wb') as f:
+      pickle.dump(model.layers[2].get_weights(), f, pickle.HIGHEST_PROTOCOL)
+  ```
+
+
 
