@@ -281,9 +281,10 @@
     ohe = OneHotEncoder(categories = [range(vocab_size)]) # ohe = OneHotEncoder(categories=[range(0, 1787)])
     X = ohe.fit_transform(np.array(xs).reshape(-1, 1)).todense() # .todense = .toarray()와 동일함: 결과를 배열 형태로 변환 
     Y = ohe.fit_transform(np.array(ys).reshape(-1, 1)).todense()
-  ## X.shape = (13868, 1787) / y.shape = (13868, 1787)
     ```
-
+  ## X.shape = (13868, 1787) / y.shape = (13868, 1787)
+  ```
+  
   * 학습용/시험용 data로 분리 
   
     ```python
@@ -312,8 +313,8 @@
     > Out[24]: (11094, 1787)
     >
   > np.array(Ytest).shape
-    > Out[25]: (2774, 1787)
-
+  > Out[25]: (2774, 1787)
+  
   * 딥러닝 모델을 생성한다. 
   
     ```python
@@ -331,18 +332,19 @@
                         # activation='softmax': one-hot이 출력되기 때문에 softmax여야 함 
     model = Model(input_layer, fourth_layer)
     model.compile(optimizer = "rmsprop", loss="categorical_crossentropy") 
-  # loss="categorical_crossentropy": 만약 one-hot이 아니라, 숫자(vocab의 index)가 출력된다면 loss="sparse_categorical_crossentropy"
     ```
-
+# loss="categorical_crossentropy": 만약 one-hot이 아니라, 숫자(vocab의 index)가 출력된다면 loss="sparse_categorical_crossentropy"
+    ```
+  
   * 학습
   
     ```python
     hist = model.fit(Xtrain, Ytrain, 
                      batch_size=BATCH_SIZE,
                      epochs=NUM_EPOCHS,
-                   validation_data = (Xtest, Ytest))
+                 validation_data = (Xtest, Ytest))
     ```
-
+  
   * Loss history를 그린다
   
     ```python
@@ -352,7 +354,7 @@
     plt.title("Loss history")
     plt.xlabel("epoch")
     plt.ylabel("loss")
-  plt.show()
+plt.show()
     ```
 
     > ![image-20200729170655602](markdown-images/image-20200729170655602.png)
@@ -362,7 +364,7 @@
   
 
   * ### 단어들끼리의 거리를 그림으로 나타내는 code
-
+  
   * Word2Vec 수치 확인
   
     ```python
@@ -401,11 +403,11 @@
     > 2771  0.196061  0.299570         83    good
     > 2772  0.000000  0.024289       1516  deserv
     > 2773  0.470771  0.550808        497    plan
-  >
+>
     > [2774 rows x 4 columns]
 
   * 샘플링된 100개 단어를 2차원 공간상에 배치
-
+  
     * 거리가 가까운 단어들은 서로 관련이 높은 것
   
     ```python
@@ -529,3 +531,13 @@
   * SGNS 방식
   * Pre-trained 방식
   * 문서 → Vector화(수치화) → 일반 DL로 바로 학습 가능
+
+
+
+
+
+
+
+
+
+* 참고: 아마추어 퀀트, blog.naver.com/chunjein
