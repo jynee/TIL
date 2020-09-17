@@ -69,11 +69,10 @@
 
   따라서 각 뉴런에서 laten layer로 이어지는 정보량(마지막에 FNN정보량+BFN정보량)은 같다
 
-* ![image-20200816004538649](markdown-images/image-20200816004538649.png)
+  > 참고: 
+  >
+  > 아마퀀트. 2019. 7. 19. "Keras LSTM** 유형 정리 (2/5) – 단층-단방향 & many-to-many 유형". http://blog.naver.com/chunjein/221589624838. 아마추어 퀀트 (Amateur Quant).
 
-    > 참고: 
-    >
-    > 아마퀀트. 2019. 7. 19. "Keras LSTM** 유형 정리 (2/5) – 단층-단방향 & many-to-many 유형". http://blog.naver.com/chunjein/221589624838. 아마추어 퀀트 (Amateur Quant).
 
 
 
