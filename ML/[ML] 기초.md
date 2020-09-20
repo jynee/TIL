@@ -45,7 +45,7 @@
 
 
 
-## **`kNN(k-Nearest Neighbor)`**
+## **`KNN(k-Nearest Neighbor)`**
 
 - code:
   - Model = `KNeighborsClassifier(~~)`

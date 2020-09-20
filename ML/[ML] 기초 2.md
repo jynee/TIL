@@ -41,8 +41,6 @@
 
 * r에 따라 {0,1} 이면 명목형, 확률이면 연속형(GMM 모델),
 
-
-
 > 참고: 심교훈. 2019. 10. 9. “가장 간단한 군집 알고리즘, k-means 클러스터링". https://bskyvision.com/564. b스카이비전
 >
 
@@ -229,7 +227,7 @@
   2. 일반화 특성을 좋게 만듦
   3. 특히 대용량 data의 경우에 속도도 SOSO
 
-* Similarity, output 값 사용: Similarity를 사용해서 잔차와 IG 계산하고 마지막에 output 계산해서 마지막 잔차 계산
+* Similarity, output 값 사용: Similarity를 사용해서 잔차와 IG 계산하고 마지막에 output 계산해서 최종적으로 잔차 계산
   
 * 데이터 大 ~ similarity(유사도) 小 why? 상쇄되는 값이 많아서.
   
@@ -292,7 +290,7 @@
 * Hyper parameter: `Model = IsolationForest`
   * n_estimators = 100   #100개의 트리
 
-* 이상데이터 검출하는 알고리즘 (ex: 카드 불법 사용에 사용)
+* 이상데이터 검출하는 알고리즘 (ex: 카드 불법 사용 탐지에 활용)
 
 * Keyword: 
   * 이진검색트리
