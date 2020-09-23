@@ -35,7 +35,7 @@
 >
 >   * [이론](https://github.com/jynee/TIL/blob/master/DL/%5BDL%5D%20GAN_%EC%9D%B4%EB%A1%A0.md)
 >
->   * 실습
+>   * [실습](https://github.com/jynee/TIL/blob/master/DL/%5BDL%5D%20GAN.md)
 >
 
 <br>
