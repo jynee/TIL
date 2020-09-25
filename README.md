@@ -55,6 +55,7 @@
 > * [kaggle competition](https://github.com/jynee/TIL/blob/master/NLP/%5BNLP%5D%2011_nlp%26Kaggle%20Competition(%ED%95%9C%EA%B8%80)_.md)
 > * [glove](https://github.com/jynee/TIL/blob/master/NLP/%5BNLP%5D%2012_nlp%26glove(%ED%95%9C%EA%B8%80)_.md)
 > * [sequence to sequence](https://github.com/jynee/TIL/blob/master/NLP/%5BNLP%5D%2013_1%20nlp%26sequencetosequence(%ED%95%9C%EA%B8%80)_.md)
+> * [transformer](https://github.com/jynee/TIL/blob/master/NLP/%5BNLP%5D%2013_2%20nlp%26transformer(%ED%95%9C%EA%B8%80)_.md)
 > * [BERT](https://github.com/jynee/TIL/blob/master/NLP/%5BNLP%5D%2013_3%20nlp%26BERT(%ED%95%9C%EA%B8%80)_.md)
 
 <br>
