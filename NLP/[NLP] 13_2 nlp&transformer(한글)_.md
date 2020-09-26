@@ -345,7 +345,7 @@ chatting(100)
     >
     > BPE 알고리즘의 기본 원리는 가장 많이 등장한 문자열에 대하여 병합하는 작업을 반복하는 데, 원하는 단어 집합의 크기. 즉, 단어의 갯수가 될 때까지 이 작업을 반복한다.
     >
-    > * 출처: [정민수][https://medium.com/@omicro03/%EC%9E%90%EC%97%B0%EC%96%B4%EC%B2%98%EB%A6%AC-nlp-5%EC%9D%BC%EC%B0%A8-%EB%8B%A8%EC%96%B4-%EB%B6%84%EB%A6%AC-60b59f681eb7]
+    > * 출처: [정민수](https://medium.com/@omicro03/%EC%9E%90%EC%97%B0%EC%96%B4%EC%B2%98%EB%A6%AC-nlp-5%EC%9D%BC%EC%B0%A8-%EB%8B%A8%EC%96%B4-%EB%B6%84%EB%A6%AC-60b59f681eb7)
 
     <br>
 

@@ -11,14 +11,14 @@
 * 문자 단위의 시계열 데이터 생성
 
   * 이렇게 되도록 생성: 보통의 시계열 Batch data처럼 생성
-  	| x          | y(one-hot encoding) |
+  | x          | y(one-hot encoding) |
   | ---------- | ------------------- |
   | I love you | (공백)              |
   | love you   | v                   |
   | ove you v  | e                   |
-| ...        | ...                 |
-    
-		>  y값을 word 단위가 아니고 characters(ex: a, b, c, ... z) 로 설정
+  | ...        | ...                 |
+  
+	>  y값을 word 단위가 아니고 characters(ex: a, b, c, ... z) 로 설정
 
 * LSTM으로 학습
 
@@ -75,22 +75,20 @@
 
           ```python
         for diversity in [0.2, 0.7,1.2]:
+          a = np.array([0.9, 0.2, 0.4])
+b = 1.0
+          e = np.exp(a/b)
+           
+          print(e/np.sum(e))
           ```
-
-          > ```python
-          > a = np.array([0.9, 0.2, 0.4])
-          > b = 1.0
-          > e = np.exp(a/b)
-          > 
-          > print(e/np.sum(e))
-          > ```
+          
           >
           > '0.9'처럼 유독 하나의 값이 클 경우 다른 값들과의 차이가 더 커짐 
           >
           > | print(e/np.sum(e))<br/>[0.40175958 0.2693075  0.32893292]    | print(e/np.sum(e))<br/>[0.47548496 0.23611884 0.2883962 ]    |
           > | ------------------------------------------------------------ | ------------------------------------------------------------ |
           > | a = np.array([0.6, 0.2, 0.4])<br/>b = 1.0<br/>e = np.exp(a/b) | a = np.array([0.9, 0.2, 0.4])<br/>b = 1.0<br/>e = np.exp(a/b) |
-
+        
      3. model.predict(x):
 
         * 예측(predict): model.predict(x) = > [0.01, 0.005, 0.3, 0.8 ...]
@@ -98,10 +96,10 @@
      4. 문자 추출:
 
         ```python
-        sys.stdout.write(pred_char)
+   sys.stdout.write(pred_char)
         sys.stdout.flush()
         ```
-
+     
         
 
 
@@ -140,7 +138,7 @@
   3. episodic memory 구성한 후, 
   4. 일반적인 답변을 줄 수 있게끔 구성한 네트워크
 
-  * ![image-20200731122306179](markdown-images/image-20200731122306179.png)
+  * ![](markdown-images/image-20200926204603184.png)
 
     > 출처: Ankit Kumar외, 2016.05, Ask Me Anything: Dynamic Memory Networks for Natural Language Processing. 에서 'attention score' 추가
 
@@ -233,7 +231,7 @@
 
 ### code:
 
-![image-20200803190130197](markdown-images/image-20200803190130197.png)
+![image-20200926204637030](markdown-images/image-20200926204637030.png)
 
 * 순서
 
