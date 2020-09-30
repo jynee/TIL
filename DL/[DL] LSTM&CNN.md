@@ -167,7 +167,7 @@
   * Flatten
 
 * `outpu` 단계
-  * Dense(n, activation = )
+  * Dense(n, activation = '`~`')
 
  
 
