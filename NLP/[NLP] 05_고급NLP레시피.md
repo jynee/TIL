@@ -926,11 +926,10 @@ checkTopic(0, 2)
                 evaluate_every=5, 
                 max_iter=1000, 
                 verbose=1)
+    
+    doc_topic = model.fit_transform(tfidf)
     ```
     
-```python
-    doc_topic = model.fit_transform(tfidf)
-```
 
 
 ​    
