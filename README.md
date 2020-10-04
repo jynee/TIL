@@ -63,3 +63,5 @@
 4. [전처리 방법](https://github.com/jynee/TIL/blob/master/%5BData%5D%20%EC%A0%84%EC%B2%98%EB%A6%AC.md)
 
 5. [코딩 프로젝트 진행 위한 기초 지식](https://github.com/jynee/TIL/blob/master/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%20%EA%B8%B0%EC%B4%88%20%EB%8B%A4%EC%A7%80%EA%B8%B0.md)
+
+6. [TQT(The question I asked the teacher today)](https://github.com/jynee/TIL/blob/master/TQT(The%20question%20I%20asked%20the%20teacher%20today.).md)
