@@ -208,8 +208,6 @@ print("word 개수 = ", len(word))
 print("문장 개수 = ", len(sentence))
 ```
 
-
-
 <br>
 
 <br>
