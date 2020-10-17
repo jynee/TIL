@@ -7,7 +7,7 @@
 * 이중 list -> 1줄로
 
   ```python
-  dw
+  df['colum_name'] = [','.join(map(str, _)) for _ in df['list']]
   ```
 
 * 특정 값만 모아서 하나의 변수에 합쳐 넣기
