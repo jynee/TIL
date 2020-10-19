@@ -46,7 +46,7 @@
 
 # model
 
-* oom
+* **oom** Error
 
   * out of memory
 
