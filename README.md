@@ -50,7 +50,7 @@
 > * [NLP & DL 기초](https://github.com/jynee/TIL/blob/master/NLP/%5BNLP%5D%2006_nlp%26DL_.md)
 > * [NLP & DL 범용목적](https://github.com/jynee/TIL/blob/master/NLP/%5BNLP%5D%2007_nlp%26DL(%EB%B2%94%EC%9A%A9%EB%AA%A9%EC%A0%81)_.md)
 > * [NLP & DL 고급응용](https://github.com/jynee/TIL/blob/master/NLP/%5BNLP%5D%2008_nlp%26DL(%EA%B3%A0%EA%B8%89%EC%9D%91%EC%9A%A9)_.md)
-> * [한글 NLP](https://github.com/jynee/TIL/blob/master/NLP/%5BNLP%5D%2009_nlp%26DL(%ED%95%9C%EA%B8%80)_.md)
+> * **[한글 NLP](https://github.com/jynee/TIL/blob/master/NLP/%5BNLP%5D%2009_nlp%26DL(%ED%95%9C%EA%B8%80)_.md)**  EDA 부분 보강 예정
 > * [한글 텍스트 분류](https://github.com/jynee/TIL/blob/master/NLP/%5BNLP%5D%2010_nlp%26%ED%85%8D%EC%8A%A4%ED%8A%B8%EB%B6%84%EB%A5%98(%ED%95%9C%EA%B8%80)_.md)
 > * [kaggle competition](https://github.com/jynee/TIL/blob/master/NLP/%5BNLP%5D%2011_nlp%26Kaggle%20Competition(%ED%95%9C%EA%B8%80)_.md)
 > * [glove](https://github.com/jynee/TIL/blob/master/NLP/%5BNLP%5D%2012_nlp%26glove(%ED%95%9C%EA%B8%80)_.md)
