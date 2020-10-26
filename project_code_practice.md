@@ -35,7 +35,7 @@
 * string으로 바꿨는데도 모델 돌릴 때 float 혹은 int가 아닌 str 쓰라고 할 때
 
   ```python
-  lambda~
+  [x.replace(x,x) if isinstance(x, str) else x for x in pandas_name["contents"]
   ```
 
   
