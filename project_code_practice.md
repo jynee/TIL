@@ -13,7 +13,7 @@
 * 특정 값만 모아서 하나의 변수에 합쳐 넣기
 
   ```python
-  dw
+  
   ```
 
   > code made by [terry kim](url)
@@ -21,7 +21,7 @@
 * 여러 row의 string 값들을 하나의 row로 합치기
 
   ```python
-  dw
+  
   ```
 
 
